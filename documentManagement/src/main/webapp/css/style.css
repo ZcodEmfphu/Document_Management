@@ -1,0 +1,73 @@
+/* styles.css */
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.card-footer {
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+.btn-confirm {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-confirm:hover {
+    background-color: #0056b3;
+}
+
+/* Custom CSS for button alignment */
+.form-group.btn-confirm {
+    display: flex;
+    justify-content: flex-end;
+}
+/* styles.css */
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-group .btn {
+    flex-grow: 1;
+    margin-right: 10px; /* Adjust margin as needed */
+}
+
+/* styles.css */
+
+/* styles.css */
+
+.document-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.document-filter label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.document-filter select {
+    width: 150px;
+}

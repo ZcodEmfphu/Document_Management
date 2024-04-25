@@ -54,7 +54,7 @@
 <%--              </div>--%>
               <!-- /.col -->
               <div style="margin-bottom: 10px" class="col-4">
-                <button type="submit" class="btn btn-primary btn-block">Signin</button>
+                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
               </div>
               <!-- /.col -->
             </div>
