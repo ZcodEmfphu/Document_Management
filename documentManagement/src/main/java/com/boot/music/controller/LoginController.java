@@ -27,12 +27,6 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-
-//    @GetMapping("/login")
-//    public String showLoginForm() {
-//        return "login";
-//    }
-
     @PostMapping("/login")
     public String login(@RequestParam String email, @RequestParam String password, Model model,
                         RedirectAttributes redirectAttributes) {

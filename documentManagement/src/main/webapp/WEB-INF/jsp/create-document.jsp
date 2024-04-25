@@ -1,11 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html lang="en">
+
 <%@ include file="admin-header.jsp" %>
-<!-- Content Wrapper. Contains page content -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Document</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -22,9 +31,8 @@
                 </div>
             </div>
         </div>
-        <!-- /.container-fluid -->
     </section>
-    <!-- Main content -->
+
     <section class="content">
         <div class="row">
             <div class="col-md-12">
@@ -32,100 +40,100 @@
                     <div class="card-header">
                         <h3 class="card-title"> Văn bản </h3>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body">
-                        <form id="my-form" action="/addDocument"  method="post"
-                              style="display: flex; flex-direction: column">
-                            <label for="title">Tiêu đề:</label>
-                            <input type="text" id="title" name="title" required>
-                            <label for="title">Nội dung:</label>
-                            <textarea id="not-summernote" name="sumary" rows="4" cols="50" required></textarea>
-                            <div class="d-flex justify-content-between my-3">
-                                <div>
-                                    <label for="dateStart">Ngay bắt đầu:</label>
-                                    <input class="mr-3" type="date" id="dateStart" name="dateStart" required>
-                                    <label for="dateEnd">Ngày kết thúc:</label>
-                                    <input type="date" id="dateEnd" name="dateEnd">
-                                </div>
-                                <button type="submit"
-                                        class="btn btn-primary"
-                                        data-toggle="modal"
-                                        data-target="#exampleModal"
-                                        style="float:right;"
-                                >
-                                    Xác nhận
-                                </button>
+                        <div class="container">
+                            <div class="document-filter">
+                                <label for="document-type">Document Type:</label>
+                                <select id="document-type" name="document-type" class="form-control">
+                                    <option value="all">All</option>
+                                    <option value="pdf">PDF</option>
+                                    <option value="doc">DOC</option>
+                                    <option value="txt">TXT</option>
+                                    <!-- Add more options as needed -->
+                                </select>
                             </div>
-                        </form>
+                            <div class="government-filter">
+                                <label for="government">Government:</label>
+                                <select id="government" name="government" class="form-control">
+                                    <option value="all">All</option>
+                                    <option value="local">Local</option>
+                                    <option value="state">State</option>
+                                    <option value="federal">Federal</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+                            <form id="createDocumentForm" action="/createDocument" method="post">
+                                <div class="form-group">
+                                    <label for="title">Title:</label>
+                                    <input type="text" id="title" name="title" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="summary">Summary:</label>
+                                    <textarea id="summary" name="summary" class="form-control" rows="4" required></textarea>
+                                </div>
+                                <div class="form-group btn-group">
+                                    <button id="cancel-document-button" class="btn btn-secondary">Cancel</button>
+                                    <button id="create-document-button" class="btn btn-primary" onclick="createDocument()">Confirm</button>
+                                </div>
 
+                            </form>
+                            <div id="success-message" style="display: none; color: green;"></div>
+                        </div>
                     </div>
-                    <div class="card-footer"> hướng dẫn sử dụng =))</div>
+                    <div class="card-footer">Hướng dẫn sử dụng</div>
                 </div>
             </div>
-            <!-- /.col-->
         </div>
-        <!-- ./row -->
     </section>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Xác nhận</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Bạn có chắc muốn tạo tài liệu?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-                    <button type="submit" form="my-form" value="Submit document" class="btn btn-primary">Tạo</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
-<footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-        <b>DACNPM</b>
-    </div>
-    <strong>Copyright &copy; 2024 Chinhphu.vn.</strong> All rights reserved.
-</footer>
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-</aside>
-<!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-<!-- jQuery -->
+</body>
+</html>
+
+
+<jsp:include page="footer.jsp" />
+<link href="css/style.css" rel="stylesheet">
+
+<aside class="control-sidebar control-sidebar-dark"></aside>
 <script src="../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
 <script src="../js/adminlte.min.js"></script>
-<!-- Summernote -->
 <script src="../plugins/summernote/summernote-bs4.min.js"></script>
-<!-- CodeMirror -->
 <script src="../plugins/codemirror/codemirror.js"></script>
 <script src="../plugins/codemirror/mode/css/css.js"></script>
 <script src="../plugins/codemirror/mode/xml/xml.js"></script>
 <script src="../plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-    $(function () {
-        // Summernote
-        $('#summernote').summernote()
-        // CodeMirror
-        CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
-            mode: "htmlmixed",
-            theme: "monokai"
+    $(document).ready(function() {
+        $('#create-document-button').click(function(event) {
+            // Ngăn hành vi gửi mẫu mặc định
+            event.preventDefault();
+
+            var title = $('#title').val();
+            var summary = $('#summary').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '${pageContext.request.contextPath}/createDocument',
+                data: {
+                    title: title,
+                    summary: summary
+                },
+                success: function(response) {
+                    // Hiển thị thông báo thành công
+                    alert(response);
+                    // Đặt lại trạng thái của mẫu
+                    $('#createDocumentForm')[0].reset();
+                },
+                error: function(xhr, status, error) {
+                    // Xử lý lỗi
+                    console.error('Lỗi:', error);
+                }
+            });
         });
-    })
+    });
 </script>
-</body>
-</html>
+
+
+

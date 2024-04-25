@@ -205,7 +205,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-              <li class="nav-item <% if(role != 1) out.println("d-none"); %>">">
+              <%--              <li class="nav-item <% if(role != 1) out.println("d-none"); %>">">--%>
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p> Quản lý tài khoản <i class="right fas fa-angle-left"></i>
@@ -225,7 +225,7 @@
                     </a>
                   </li>
                 </ul>
-              </li>
+              <%--              </li>--%>
               <li class="nav-item ">
                 <a href="#" class="nav-link active">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -233,12 +233,14 @@
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
+                  <%--Tạo tài liệu mới --%>
                   <li class="nav-item">
-                    <a href="../document-managent/create-document.html" class="nav-link">
+                    <a href="/createDocument" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Create Document</p>
                     </a>
                   </li>
+
                   <li class="nav-item">
                     <a href="/documents" class="nav-link active">
                       <i class="far fa-circle nav-icon"></i>
