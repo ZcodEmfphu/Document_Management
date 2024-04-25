@@ -1,22 +1,18 @@
 package com.boot.music.controller;
 
 import com.boot.music.entity.Document;
-import com.boot.music.entity.User;
 import com.boot.music.repositories.DocumentRepo;
 import com.boot.music.repositories.UserRepo;
-import com.boot.music.request.DocumentRequest;
 import com.boot.music.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class DocumentController {
@@ -55,6 +51,18 @@ public class DocumentController {
         return "redirect:/documents";
     }
 
+    @PostMapping("/createDocument")
+    public String createDocument(@RequestParam("title") String title,
+                                 @RequestParam("summary") String summary) {
+        try {
+            Document document = new Document(title, summary, null, null, null);
+            documentService.createDocument(document);
+            return "redirect:/";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/";
+        }
+    }
 
 
 
