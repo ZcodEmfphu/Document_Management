@@ -11,7 +11,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="styles.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 <div class="content-wrapper">
@@ -62,7 +62,7 @@
                                     <!-- Add more options as needed -->
                                 </select>
                             </div>
-                            <form id="createDocumentForm" action="/createDocument" method="post">
+
                                 <div class="form-group">
                                     <label for="title">Title:</label>
                                     <input type="text" id="title" name="title" class="form-control" required>
@@ -76,8 +76,8 @@
                                     <button id="create-document-button" class="btn btn-primary" onclick="createDocument()">Confirm</button>
                                 </div>
 
-                            </form>
-                            <div id="success-message" style="display: none; color: green;"></div>
+                            <div id="success-message" style="display: none;" class="alert alert-success">Tạo tài liệu thành công!</div>
+
                         </div>
                     </div>
                     <div class="card-footer">Hướng dẫn sử dụng</div>
@@ -87,11 +87,11 @@
     </section>
 </div>
 </body>
-</html>
+
+
 
 
 <jsp:include page="footer.jsp" />
-<link href="css/style.css" rel="stylesheet">
 
 <aside class="control-sidebar control-sidebar-dark"></aside>
 <script src="../plugins/jquery/jquery.min.js"></script>
@@ -103,13 +103,14 @@
 <script src="../plugins/codemirror/mode/xml/xml.js"></script>
 <script src="../plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../js/script.js"></script>
 
+</html>
 <script>
+
     $(document).ready(function() {
         $('#create-document-button').click(function(event) {
-            // Ngăn hành vi gửi mẫu mặc định
             event.preventDefault();
-
             var title = $('#title').val();
             var summary = $('#summary').val();
 
@@ -121,18 +122,27 @@
                     summary: summary
                 },
                 success: function(response) {
-                    // Hiển thị thông báo thành công
-                    alert(response);
-                    // Đặt lại trạng thái của mẫu
-                    $('#createDocumentForm')[0].reset();
+
+                    alert("Bạn đã tạo thành công, vui lòng chờ phản hồi");
+
+                    $('#title').val('');
+                    $('#summary').val('');
                 },
                 error: function(xhr, status, error) {
-                    // Xử lý lỗi
                     console.error('Lỗi:', error);
                 }
             });
         });
+
+
+        $('#cancel-document-button').click(function() {
+            // Đặt lại giá trị của các trường input về trạng thái mặc định
+            $('#title').val('');
+            $('#summary').val('');
+        });
     });
+
+
 </script>
 
 
