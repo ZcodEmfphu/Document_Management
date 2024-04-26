@@ -64,13 +64,10 @@ $(document).ready(function () {
 
     // Create Documents
     $('#create-document-button').click(function(event) {
-        event.preventDefault(); // Ngăn chặn hành vi mặc định của form
-
-        // Lấy dữ liệu từ các trường input
+        event.preventDefault();
         var title = $('#title').val();
         var summary = $('#summary').val();
 
-        // Gửi AJAX request lên server
         $.ajax({
             type: 'POST',
             url: '/createDocument',
@@ -79,10 +76,7 @@ $(document).ready(function () {
                 summary: summary
             },
             success: function(response) {
-                // Hiển thị thông báo thành công
                 alert("Bạn đã tạo thành công, vui lòng chờ phản hồi");
-
-                // Đặt lại giá trị của các trường input về trạng thái mặc định
                 $('#title').val('');
                 $('#summary').val('');
             },
@@ -92,9 +86,8 @@ $(document).ready(function () {
         });
     });
 
-    // Xử lý sự kiện click của nút "Cancel"
+    //Cancel Create Documents
     $('#cancel-document-button').click(function() {
-        // Đặt lại giá trị của các trường input về trạng thái mặc định
         $('#title').val('');
         $('#summary').val('');
     });
